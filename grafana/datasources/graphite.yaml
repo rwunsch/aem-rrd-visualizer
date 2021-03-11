@@ -1,0 +1,9 @@
+# config file version
+apiVersion: 1
+
+datasources:
+  - name: Graphite
+    type: graphite
+    url: http://graphite:8080
+    jsonData:
+      graphiteVersion: "1.1"

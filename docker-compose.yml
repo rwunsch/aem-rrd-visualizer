@@ -1,0 +1,69 @@
+version: '3'
+
+## DO NOT use the default bridge as containers cannot find each other using names in the default bridge
+## This is due to backward compatability: https://docs.docker.com/engine/userguide/networking/
+#networks:
+#  default:
+#    external:
+#      name: bridge
+
+networks:
+    aem-network:
+services:
+    openjdk-rdd-converter:
+        build:
+          context: ./openjdk-rdd-converter
+          dockerfile: Dockerfile-openjdk-rdd-converter
+#          args:
+        image: aem-rrd-visulaizer/openjdk-rdd-converter
+        container_name: openjdk-rdd-converter
+        networks:
+            aem-network:
+                aliases:
+                    - aem-base  
+        volumes:
+            - "./dependencies:/mnt/dependencies"
+            - "./rrd-file-input:/mnt/rrd-file-input"
+            - "./rrd-file-output:/mnt/dependencies/rrd"
+    graphite:
+        build:
+          context: ./graphite
+          dockerfile: Dockerfile-graphite
+#          args:
+        image: aem-rrd-visulaizer/graphite
+        container_name: graphite
+        networks:
+            aem-network:
+                aliases:
+                    - aem-base  
+        ports:
+            - "81:80"
+            - "2003:2003"
+            - "2004:2004"
+            - "2023:2023"
+            - "2024:2024"
+            - "8125:8125/udp"
+            - "8126:8126"
+        volumes:
+            - "./rrd-file-output:/opt/graphite/storage/rrd/localhost/"
+        ## Link is only set for docker-compose build and start-up (java-linux first, then graphite, then grafana)
+        links:
+            - openjdk-rdd-converter
+    grafana:
+        #build:
+        #  context: ./grafana
+        #  dockerfile: Dockerfile-grafana
+        image: "grafana/grafana"
+        container_name: grafana
+        networks:
+            aem-network:
+                aliases:
+                    - aem-base
+        ports:
+            - "80:3000"
+        volumes:
+            - "./dependencies:/mnt/dependencies"
+            - "./grafana/dashboards:/etc/grafana/provisioning/dashboards"
+            - "./grafana/datasources:/etc/grafana/provisioning/datasources"
+        links:
+            - openjdk-rdd-converter

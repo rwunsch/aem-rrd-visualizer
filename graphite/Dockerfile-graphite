@@ -1,0 +1,4 @@
+## Dockerized graphiteapp/graphite-statsd
+FROM graphiteapp/graphite-statsd:master
+
+MAINTAINER Robert Wunsch <wunsch@adobe.com>

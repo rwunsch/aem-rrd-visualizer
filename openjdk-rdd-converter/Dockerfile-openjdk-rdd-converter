@@ -1,0 +1,8 @@
+# https://github.com/docker-library/openjdk/blob/master/8/jre/buster/Dockerfile
+# https://github.com/docker-library/buildpack-deps/blob/master/debian/buster/Dockerfile
+FROM openjdk:8-buster
+WORKDIR /mnt/dependencies
+RUN apt-get update; \
+    apt-get install -y rrdtool 
+	
+CMD ["java", "-jar", "/mnt/dependencies/com.adobe.granite.rrd4j.rrdtool-0.0.2.jar", "/mnt/rrd-file-input/metrics.rrd"]
