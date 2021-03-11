@@ -50,10 +50,10 @@ services:
         links:
             - openjdk-rdd-converter
     grafana:
-        #build:
-        #  context: ./grafana
-        #  dockerfile: Dockerfile-grafana
-        image: "grafana/grafana"
+        build:
+          context: ./grafana
+          dockerfile: Dockerfile-grafana
+        image: aem-rrd-visulaizer/grafana
         container_name: grafana
         networks:
             aem-network:
@@ -62,7 +62,7 @@ services:
         ports:
             - "80:3000"
         volumes:
-            - "./dependencies:/mnt/dependencies"
+            - "./grafana/grafana-dashboards:/mnt/grafana-dashboards"
             - "./grafana/dashboards:/etc/grafana/provisioning/dashboards"
             - "./grafana/datasources:/etc/grafana/provisioning/datasources"
         links:

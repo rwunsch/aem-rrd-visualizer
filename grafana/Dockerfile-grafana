@@ -1,0 +1,6 @@
+## Dockerized graphiteapp/graphite-statsd
+FROM grafana/grafana
+
+MAINTAINER Robert Wunsch <wunsch@adobe.com>
+
+COPY ./grafana.ini /etc/grafana/grafana.ini
