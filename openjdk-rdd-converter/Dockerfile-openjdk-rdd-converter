@@ -1,7 +1,7 @@
 # https://github.com/docker-library/openjdk/blob/master/8/jre/buster/Dockerfile
 # https://github.com/docker-library/buildpack-deps/blob/master/debian/buster/Dockerfile
 FROM openjdk:8-buster
-WORKDIR /mnt/dependencies
+WORKDIR /mnt/rrd-file-output
 RUN apt-get update; \
     apt-get install -y rrdtool 
 	

@@ -1,6 +1,6 @@
 # metrics-folders
-rdd-file-output/*
-rdd-file-input/metrics.rdd.xml
+/rdd-file-output/*
+/rdd-file-input/metrics.rdd.xml
 
 #dependency-folders
 dependencies/rdd

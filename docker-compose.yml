@@ -24,7 +24,7 @@ services:
         volumes:
             - "./dependencies:/mnt/dependencies"
             - "./rrd-file-input:/mnt/rrd-file-input"
-            - "./rrd-file-output:/mnt/dependencies/rrd"
+            - "./rrd-file-output:/mnt/rrd-file-output/rrd"
     graphite:
         build:
           context: ./graphite
