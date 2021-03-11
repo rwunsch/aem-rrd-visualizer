@@ -39,3 +39,4 @@ docker-compose up  openjdk-rdd-converter
 ## Screenshots
 
 ![localhost AEM Dashboard](/resources/AEM_Metrics-Dashbaord.png)
+![aem-rrd-visualizer File Structure](/resources/aem-rrd-visualizer_FileStructure.png)
