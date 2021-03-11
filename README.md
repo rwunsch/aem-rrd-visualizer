@@ -27,14 +27,19 @@ Execute within the _repository-root_ folder:
 docker-compose build
 ```
 ## Start environment
+Place the "metrics.rdd" file and the "metrics.rdd.properties" file from the "AEM configuration-status" into "rrd-file-input" folder (replace the existing sample files).
+
+
 Execute within the project root folder
 ```
 docker-compose up 
 ```
-or for e.g. only the RRD converter "openjdk-rdd-converter"
+(or for e.g. only the RRD converter "openjdk-rdd-converter")
 ```
 docker-compose up  openjdk-rdd-converter
 ```
+
+Open the browser on " http://localhost" to see "Grafana" and open the "AEM Metrics"-dashboard.
 
 ## Screenshots
 
